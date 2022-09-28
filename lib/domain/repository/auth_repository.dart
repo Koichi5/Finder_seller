@@ -7,8 +7,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 abstract class BaseAuthRepository {
   Stream<User?> get authStateChanges;
-  Future<void> signInWithEmailAndPassword(String email, String password);
-  Future<void> signInWithGoogle();
+  Future<User?> signInWithEmailAndPassword(String email, String password);
+  Future<User?> signInWithGoogle();
   User? getCurrentUser();
   Future<void> signOut();
 }
@@ -27,22 +27,28 @@ class AuthRepository implements BaseAuthRepository {
       _reader(firebaseAuthProvider).authStateChanges();
 
   @override
-  Future<void> signInWithEmailAndPassword(String email, String password) async {
+  Future<User?> signInWithEmailAndPassword(
+      String email, String password) async {
+    User? user;
     try {
       await _reader(firebaseAuthProvider)
           .createUserWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       throw CustomException(message: e.message);
     }
+    return user;
   }
 
   @override
-  Future<void> signInWithGoogle() async {
+  Future<User?> signInWithGoogle() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
-    final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
+    final GoogleSignInAccount? googleSignInAccount =
+        await googleSignIn.signIn();
+    User? user;
 
-    if(googleSignInAccount != null) {
-      final GoogleSignInAuthentication googleSignInAuthentication = await googleSignInAccount.authentication;
+    if (googleSignInAccount != null) {
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount.authentication;
 
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleSignInAuthentication.accessToken,
@@ -50,21 +56,25 @@ class AuthRepository implements BaseAuthRepository {
       );
 
       try {
-        final UserCredential userCredential = await _reader(firebaseAuthProvider).signInWithCredential(credential);
+        final UserCredential userCredential =
+            await _reader(firebaseAuthProvider)
+                .signInWithCredential(credential);
 
         //User を返す場合
         // final user = userCredential.user;
-        // user = userCredential.user;
+        user = userCredential.user;
       } on FirebaseAuthException catch (e) {
         throw CustomException(message: e.message);
       }
     }
+    return user;
   }
 
   @override
   User? getCurrentUser() {
     try {
-      return _reader(firebaseAuthProvider).currentUser;
+      final user = _reader(firebaseAuthProvider).currentUser;
+      return user;
     } on FirebaseAuthException catch (e) {
       throw CustomException(message: e.message);
     }
@@ -73,11 +83,11 @@ class AuthRepository implements BaseAuthRepository {
   @override
   Future<void> signOut() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
-
     try {
-      if(!kIsWeb) {
-        await _reader(firebaseAuthProvider).signOut();
+      if (!kIsWeb) {
+        await googleSignIn.signOut();
       }
+      await _reader(firebaseAuthProvider).signOut();
     } on FirebaseAuthException catch (e) {
       throw CustomException(message: e.message);
     }

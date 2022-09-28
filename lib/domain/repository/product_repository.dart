@@ -6,12 +6,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 abstract class BaseProductRepository {
   Future<List<Product>> retrieveProducts({required String userId});
-  Future<String> createProduct({required String userId, required Product product});
-  Future<void> updateProduct({required String userId, required Product product});
-  Future<void> deleteProduct({required String userId, required String productId});
+  Future<String> addProduct({required String userId, required Product product});
+  Future<void> updateProduct(
+      {required String userId, required Product product});
+  Future<void> toggleIsExhibited(
+      {required String userId, required Product product});
+  Future<void> deleteProduct(
+      {required String userId, required String productId});
 }
 
-final productRepositoryProvider = Provider<ProductRepository>((ref) => ProductRepository(ref.read));
+final productRepositoryProvider =
+    Provider<ProductRepository>((ref) => ProductRepository(ref.read));
 
 class ProductRepository implements BaseProductRepository {
   final Reader _read;
@@ -22,7 +27,10 @@ class ProductRepository implements BaseProductRepository {
   Future<List<Product>> retrieveProducts({required String userId}) async {
     try {
       final snap = await _read(firebaseFirestoreProvider)
-          .collection('todoList').doc(userId).collection('userList').get();
+          .collection('seller')
+          .doc(userId)
+          .collection('productList')
+          .get();
       return snap.docs.map((doc) => Product.fromDocument(doc)).toList();
     } on FirebaseException catch (e) {
       throw CustomException(message: e.message);
@@ -30,11 +38,13 @@ class ProductRepository implements BaseProductRepository {
   }
 
   @override
-  Future<String> createProduct(
+  Future<String> addProduct(
       {required String userId, required Product product}) async {
     try {
       final docRef = await _read(firebaseFirestoreProvider)
-          .collection('todoList').doc(userId).collection('userList')
+          .collection('seller')
+          .doc(userId)
+          .collection('productList')
           .add(product.toDocument());
       return docRef.id;
     } on FirebaseException catch (e) {
@@ -43,10 +53,13 @@ class ProductRepository implements BaseProductRepository {
   }
 
   @override
-  Future<void> updateProduct({required String userId, required Product product}) async {
+  Future<void> updateProduct(
+      {required String userId, required Product product}) async {
     try {
       await _read(firebaseFirestoreProvider)
-          .collection('todoList').doc(userId).collection('userList')
+          .collection('seller')
+          .doc(userId)
+          .collection('productList')
           .doc(product.id)
           .update(product.toDocument());
     } on FirebaseException catch (e) {
@@ -55,10 +68,22 @@ class ProductRepository implements BaseProductRepository {
   }
 
   @override
-  Future<void> deleteProduct({required String userId, required String productId}) async {
+  Future<void> toggleIsExhibited({required String userId, required Product product}) async {
+    try {
+      await _read(firebaseFirestoreProvider).collection('seller').doc(userId).collection('productList').doc(product.id).update(product.toDocument());
+    } on FirebaseException catch (e) {
+      throw CustomException(message: e.message);
+    }
+  }
+
+  @override
+  Future<void> deleteProduct(
+      {required String userId, required String productId}) async {
     try {
       await _read(firebaseFirestoreProvider)
-          .collection('todoList').doc(userId).collection('userList')
+          .collection('seller')
+          .doc(userId)
+          .collection('productList')
           .doc(productId)
           .delete();
     } on FirebaseException catch (e) {

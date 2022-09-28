@@ -26,6 +26,7 @@ mixin _$Product {
   int? get regularPrice => throw _privateConstructorUsedError;
   int? get discountRate => throw _privateConstructorUsedError;
   String? get productDetail => throw _privateConstructorUsedError;
+  bool get isExhibited => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +43,8 @@ abstract class $ProductCopyWith<$Res> {
       String? imagePath,
       int? regularPrice,
       int? discountRate,
-      String? productDetail});
+      String? productDetail,
+      bool isExhibited});
 }
 
 /// @nodoc
@@ -61,6 +63,7 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
     Object? regularPrice = freezed,
     Object? discountRate = freezed,
     Object? productDetail = freezed,
+    Object? isExhibited = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -87,6 +90,10 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
           ? _value.productDetail
           : productDetail // ignore: cast_nullable_to_non_nullable
               as String?,
+      isExhibited: isExhibited == freezed
+          ? _value.isExhibited
+          : isExhibited // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -103,7 +110,8 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String? imagePath,
       int? regularPrice,
       int? discountRate,
-      String? productDetail});
+      String? productDetail,
+      bool isExhibited});
 }
 
 /// @nodoc
@@ -123,6 +131,7 @@ class __$$_ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
     Object? regularPrice = freezed,
     Object? discountRate = freezed,
     Object? productDetail = freezed,
+    Object? isExhibited = freezed,
   }) {
     return _then(_$_Product(
       id: id == freezed
@@ -149,6 +158,10 @@ class __$$_ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
           ? _value.productDetail
           : productDetail // ignore: cast_nullable_to_non_nullable
               as String?,
+      isExhibited: isExhibited == freezed
+          ? _value.isExhibited
+          : isExhibited // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -162,7 +175,8 @@ class _$_Product extends _Product {
       this.imagePath,
       this.regularPrice,
       this.discountRate,
-      this.productDetail})
+      this.productDetail,
+      this.isExhibited = false})
       : super._();
 
   factory _$_Product.fromJson(Map<String, dynamic> json) =>
@@ -180,10 +194,13 @@ class _$_Product extends _Product {
   final int? discountRate;
   @override
   final String? productDetail;
+  @override
+  @JsonKey()
+  final bool isExhibited;
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, imagePath: $imagePath, regularPrice: $regularPrice, discountRate: $discountRate, productDetail: $productDetail)';
+    return 'Product(id: $id, name: $name, imagePath: $imagePath, regularPrice: $regularPrice, discountRate: $discountRate, productDetail: $productDetail, isExhibited: $isExhibited)';
   }
 
   @override
@@ -199,7 +216,9 @@ class _$_Product extends _Product {
             const DeepCollectionEquality()
                 .equals(other.discountRate, discountRate) &&
             const DeepCollectionEquality()
-                .equals(other.productDetail, productDetail));
+                .equals(other.productDetail, productDetail) &&
+            const DeepCollectionEquality()
+                .equals(other.isExhibited, isExhibited));
   }
 
   @JsonKey(ignore: true)
@@ -211,7 +230,8 @@ class _$_Product extends _Product {
       const DeepCollectionEquality().hash(imagePath),
       const DeepCollectionEquality().hash(regularPrice),
       const DeepCollectionEquality().hash(discountRate),
-      const DeepCollectionEquality().hash(productDetail));
+      const DeepCollectionEquality().hash(productDetail),
+      const DeepCollectionEquality().hash(isExhibited));
 
   @JsonKey(ignore: true)
   @override
@@ -233,7 +253,8 @@ abstract class _Product extends Product {
       final String? imagePath,
       final int? regularPrice,
       final int? discountRate,
-      final String? productDetail}) = _$_Product;
+      final String? productDetail,
+      final bool isExhibited}) = _$_Product;
   const _Product._() : super._();
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$_Product.fromJson;
@@ -250,6 +271,8 @@ abstract class _Product extends Product {
   int? get discountRate;
   @override
   String? get productDetail;
+  @override
+  bool get isExhibited;
   @override
   @JsonKey(ignore: true)
   _$$_ProductCopyWith<_$_Product> get copyWith =>

@@ -4,6 +4,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'store.freezed.dart';
 part 'store.g.dart';
 
+// terminal code : flutter pub run build_runner build --delete-conflicting-outputs
+
 @freezed
 abstract class Store implements _$Store {
   const Store._();

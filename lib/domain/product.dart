@@ -4,6 +4,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'product.freezed.dart';
 part 'product.g.dart';
 
+// terminal code : flutter pub run build_runner build --delete-conflicting-outputs
+
 @freezed
 abstract class Product implements _$Product {
   const Product._();
@@ -14,6 +16,7 @@ abstract class Product implements _$Product {
     int? regularPrice,
     int? discountRate,
     String? productDetail,
+    @Default(false) bool isExhibited,
   }) = _Product;
 
   factory Product.empty() => const Product(name: '');

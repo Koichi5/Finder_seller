@@ -13,6 +13,7 @@ _$_Product _$$_ProductFromJson(Map<String, dynamic> json) => _$_Product(
       regularPrice: json['regularPrice'] as int?,
       discountRate: json['discountRate'] as int?,
       productDetail: json['productDetail'] as String?,
+      isExhibited: json['isExhibited'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$$_ProductToJson(_$_Product instance) =>
       'regularPrice': instance.regularPrice,
       'discountRate': instance.discountRate,
       'productDetail': instance.productDetail,
+      'isExhibited': instance.isExhibited,
     };
