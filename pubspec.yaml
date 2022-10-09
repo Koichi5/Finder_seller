@@ -16,12 +16,16 @@ dependencies:
   firebase_core: ^1.23.0
   cloud_firestore: ^3.4.9
   firebase_auth: ^3.10.0
+  firebase_storage: ^10.3.9
   google_sign_in: ^5.4.2
   freezed_annotation: ^2.1.0
   state_notifier: ^0.7.2+1
   hooks_riverpod: ^1.0.4
   intro_slider: ^4.0.0
   material_segmented_control: ^4.0.0
+  url_launcher: ^6.1.5
+  image_picker: ^0.8.5+3
+  cached_network_image: ^3.2.2
 #  BottomNavigationBar
   convex_bottom_bar: ^3.1.0+1
   curved_navigation_bar: ^1.0.3
@@ -35,6 +39,12 @@ dev_dependencies:
   freezed: ^2.1.1
   build_runner: ^2.2.1
   json_serializable: ^6.4.0
+  flutter_native_splash: ^2.2.10+1
+
+flutter_native_splash:
+  image: "assets/images/finder_logo_expanded.png"
+  color: "FFFFFF"
+
 
 flutter:
 

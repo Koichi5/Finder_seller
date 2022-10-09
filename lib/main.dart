@@ -5,7 +5,10 @@ import 'package:finder_seller/presentation/intro_slider_screen.dart';
 import 'package:finder_seller/presentation/product_register_screen.dart';
 import 'package:finder_seller/presentation/product_template_screen.dart';
 import 'package:finder_seller/presentation/seller_sign_up_screen.dart';
-import 'package:finder_seller/presentation/sign_up_screen.dart';
+import 'package:finder_seller/presentation/setting_screen.dart';
+import 'package:finder_seller/presentation/sign_in_screen.dart';
+import 'package:finder_seller/presentation/store_edit_screen.dart';
+import 'package:finder_seller/presentation/widgets/product_edit_modal.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -32,12 +35,14 @@ class MyApp extends HookConsumerWidget {
         routes: <String, WidgetBuilder>{
           '/intro_slider': (BuildContext context) => IntroSliderScreen(),
           '/home': (BuildContext context) => HomeScreen(),
-          '/sign_up': (BuildContext context) => SignUpScreen(),
+          '/sign_in': (BuildContext context) => SignInScreen(),
           '/seller_sign_up': (BuildContext context) => SellerSignUpScreen(),
           '/product_register': (BuildContext context) =>
               ProductRegisterScreen(),
           '/product_template': (BuildContext context) =>
               ProductTemplateScreen(),
+          '/setting' : (BuildContext context) => SettingScreen(),
+          '/store_edit' : (BuildContext context) => StoreEditScreen(),
         },
     home: IntroSliderScreen());
         // initialRoute: '/home',

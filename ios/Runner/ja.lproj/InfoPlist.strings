@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  Runner
+
+  Created by Koichi Kishimoto on 2022/10/01.
+  
+*/
+NSCameraUsageDescription = "アプリはカメラで撮影した写真を編集します。";
+NSPhotoLibraryUsageDescription = "アプリはPhotoLibraryで選択した写真を編集します。";
+NSPhotoLibraryAddUsageDescription = "アプリはPhotoLibraryに写真を保存します。";

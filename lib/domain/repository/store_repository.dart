@@ -29,7 +29,7 @@ class StoreRepository implements BaseStoreRepository {
       final snap = await _read(firebaseFirestoreProvider)
           .collection('seller')
           .doc(userId)
-          .collection('store')
+          .collection('storeInfo')
           .get();
       return snap.docs.map((doc) => Store.fromDocument(doc)).toList();
     } on FirebaseException catch (e) {
@@ -44,7 +44,7 @@ class StoreRepository implements BaseStoreRepository {
       final docRef = await _read(firebaseFirestoreProvider)
           .collection('seller')
           .doc(userId)
-          .collection('store')
+          .collection('storeInfo')
           .add(store.toDocument());
       return docRef.id;
     } on FirebaseException catch (e) {
@@ -59,7 +59,7 @@ class StoreRepository implements BaseStoreRepository {
       await _read(firebaseFirestoreProvider)
           .collection('seller')
           .doc(userId)
-          .collection('store')
+          .collection('storeInfo')
           .doc(store.id)
           .update(store.toDocument());
     } on FirebaseException catch (e) {
@@ -74,7 +74,7 @@ class StoreRepository implements BaseStoreRepository {
       await _read(firebaseFirestoreProvider)
           .collection('seller')
           .doc(userId)
-          .collection('store')
+          .collection('storeInfo')
           .doc(storeId)
           .delete();
     } on FirebaseException catch (e) {

@@ -22,10 +22,13 @@ Product _$ProductFromJson(Map<String, dynamic> json) {
 mixin _$Product {
   String? get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String? get imagePath => throw _privateConstructorUsedError;
+  String? get imagePath =>
+      throw _privateConstructorUsedError; // File? imageFile,
   int? get regularPrice => throw _privateConstructorUsedError;
   int? get discountRate => throw _privateConstructorUsedError;
   String? get productDetail => throw _privateConstructorUsedError;
+  int? get remainCount => throw _privateConstructorUsedError;
+  bool get isReserved => throw _privateConstructorUsedError;
   bool get isExhibited => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,6 +47,8 @@ abstract class $ProductCopyWith<$Res> {
       int? regularPrice,
       int? discountRate,
       String? productDetail,
+      int? remainCount,
+      bool isReserved,
       bool isExhibited});
 }
 
@@ -63,6 +68,8 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
     Object? regularPrice = freezed,
     Object? discountRate = freezed,
     Object? productDetail = freezed,
+    Object? remainCount = freezed,
+    Object? isReserved = freezed,
     Object? isExhibited = freezed,
   }) {
     return _then(_value.copyWith(
@@ -90,6 +97,14 @@ class _$ProductCopyWithImpl<$Res> implements $ProductCopyWith<$Res> {
           ? _value.productDetail
           : productDetail // ignore: cast_nullable_to_non_nullable
               as String?,
+      remainCount: remainCount == freezed
+          ? _value.remainCount
+          : remainCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isReserved: isReserved == freezed
+          ? _value.isReserved
+          : isReserved // ignore: cast_nullable_to_non_nullable
+              as bool,
       isExhibited: isExhibited == freezed
           ? _value.isExhibited
           : isExhibited // ignore: cast_nullable_to_non_nullable
@@ -111,6 +126,8 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       int? regularPrice,
       int? discountRate,
       String? productDetail,
+      int? remainCount,
+      bool isReserved,
       bool isExhibited});
 }
 
@@ -131,6 +148,8 @@ class __$$_ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
     Object? regularPrice = freezed,
     Object? discountRate = freezed,
     Object? productDetail = freezed,
+    Object? remainCount = freezed,
+    Object? isReserved = freezed,
     Object? isExhibited = freezed,
   }) {
     return _then(_$_Product(
@@ -158,6 +177,14 @@ class __$$_ProductCopyWithImpl<$Res> extends _$ProductCopyWithImpl<$Res>
           ? _value.productDetail
           : productDetail // ignore: cast_nullable_to_non_nullable
               as String?,
+      remainCount: remainCount == freezed
+          ? _value.remainCount
+          : remainCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      isReserved: isReserved == freezed
+          ? _value.isReserved
+          : isReserved // ignore: cast_nullable_to_non_nullable
+              as bool,
       isExhibited: isExhibited == freezed
           ? _value.isExhibited
           : isExhibited // ignore: cast_nullable_to_non_nullable
@@ -173,9 +200,11 @@ class _$_Product extends _Product {
       {this.id,
       required this.name,
       this.imagePath,
-      this.regularPrice,
+      required this.regularPrice,
       this.discountRate,
       this.productDetail,
+      this.remainCount,
+      this.isReserved = false,
       this.isExhibited = false})
       : super._();
 
@@ -188,6 +217,7 @@ class _$_Product extends _Product {
   final String name;
   @override
   final String? imagePath;
+// File? imageFile,
   @override
   final int? regularPrice;
   @override
@@ -195,12 +225,17 @@ class _$_Product extends _Product {
   @override
   final String? productDetail;
   @override
+  final int? remainCount;
+  @override
+  @JsonKey()
+  final bool isReserved;
+  @override
   @JsonKey()
   final bool isExhibited;
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, imagePath: $imagePath, regularPrice: $regularPrice, discountRate: $discountRate, productDetail: $productDetail, isExhibited: $isExhibited)';
+    return 'Product(id: $id, name: $name, imagePath: $imagePath, regularPrice: $regularPrice, discountRate: $discountRate, productDetail: $productDetail, remainCount: $remainCount, isReserved: $isReserved, isExhibited: $isExhibited)';
   }
 
   @override
@@ -218,6 +253,10 @@ class _$_Product extends _Product {
             const DeepCollectionEquality()
                 .equals(other.productDetail, productDetail) &&
             const DeepCollectionEquality()
+                .equals(other.remainCount, remainCount) &&
+            const DeepCollectionEquality()
+                .equals(other.isReserved, isReserved) &&
+            const DeepCollectionEquality()
                 .equals(other.isExhibited, isExhibited));
   }
 
@@ -231,6 +270,8 @@ class _$_Product extends _Product {
       const DeepCollectionEquality().hash(regularPrice),
       const DeepCollectionEquality().hash(discountRate),
       const DeepCollectionEquality().hash(productDetail),
+      const DeepCollectionEquality().hash(remainCount),
+      const DeepCollectionEquality().hash(isReserved),
       const DeepCollectionEquality().hash(isExhibited));
 
   @JsonKey(ignore: true)
@@ -251,9 +292,11 @@ abstract class _Product extends Product {
       {final String? id,
       required final String name,
       final String? imagePath,
-      final int? regularPrice,
+      required final int? regularPrice,
       final int? discountRate,
       final String? productDetail,
+      final int? remainCount,
+      final bool isReserved,
       final bool isExhibited}) = _$_Product;
   const _Product._() : super._();
 
@@ -265,12 +308,16 @@ abstract class _Product extends Product {
   String get name;
   @override
   String? get imagePath;
-  @override
+  @override // File? imageFile,
   int? get regularPrice;
   @override
   int? get discountRate;
   @override
   String? get productDetail;
+  @override
+  int? get remainCount;
+  @override
+  bool get isReserved;
   @override
   bool get isExhibited;
   @override

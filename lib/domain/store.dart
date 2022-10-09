@@ -13,7 +13,7 @@ abstract class Store implements _$Store {
     String? id,
     required bool isSuperMarket,
     required String name,
-    required String? postCode,
+    required int? postCode,
     required String address,
     required String? phoneNumber,
     required String genre,
@@ -27,7 +27,7 @@ abstract class Store implements _$Store {
     @Default(false) bool electricMoneyUse,
     List<String>? electricMoneyDetail,
     int? seats,
-    int? personalSeats,
+    // int? personalSeats,
     @Default(false) bool smoking,
     int? parking,
     String? homePageUrl,
@@ -40,7 +40,7 @@ abstract class Store implements _$Store {
   factory Store.empty() => const Store(
       isSuperMarket: false,
       name: "",
-      postCode: "",
+      postCode: 0,
       address: "",
       phoneNumber: '',
       genre: '');

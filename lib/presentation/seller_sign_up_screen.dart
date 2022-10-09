@@ -20,7 +20,7 @@ class SellerSignUpScreen extends HookConsumerWidget {
                   ref.watch(storeListControllerProvider.notifier).addStore(
                     name: "Store",
                     isSuperMarket: false,
-                    postCode: "533-0032",
+                    postCode: 5330032,
                     address: "大阪府大阪市東淀川区淡路4-6-49",
                     phoneNumber: "080-45589517",
                     genre: "ラーメン屋",

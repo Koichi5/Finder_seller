@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -13,13 +15,16 @@ abstract class Product implements _$Product {
     String? id,
     required String name,
     String? imagePath,
-    int? regularPrice,
+    // File? imageFile,
+    required int? regularPrice,
     int? discountRate,
     String? productDetail,
+    int? remainCount,
+    @Default(false) bool isReserved,
     @Default(false) bool isExhibited,
   }) = _Product;
 
-  factory Product.empty() => const Product(name: '');
+  factory Product.empty() => const Product(name: '', regularPrice: 0, discountRate: 0, remainCount: 0);
 
   factory Product.fromJson(json) => _$ProductFromJson(json);
 

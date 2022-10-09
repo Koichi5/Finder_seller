@@ -40,7 +40,7 @@ class StoreListController extends StateNotifier<AsyncValue<List<Store>>> {
   Future<void> addStore({
     required String name,
     required bool isSuperMarket,
-    required String postCode,
+    required int postCode,
     required String address,
     required String? phoneNumber,
     required String genre,

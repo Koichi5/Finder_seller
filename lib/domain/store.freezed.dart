@@ -23,7 +23,7 @@ mixin _$Store {
   String? get id => throw _privateConstructorUsedError;
   bool get isSuperMarket => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  String? get postCode => throw _privateConstructorUsedError;
+  int? get postCode => throw _privateConstructorUsedError;
   String get address => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
   String get genre => throw _privateConstructorUsedError;
@@ -36,8 +36,7 @@ mixin _$Store {
   List<String>? get creditCardDetail => throw _privateConstructorUsedError;
   bool get electricMoneyUse => throw _privateConstructorUsedError;
   List<String>? get electricMoneyDetail => throw _privateConstructorUsedError;
-  int? get seats => throw _privateConstructorUsedError;
-  int? get personalSeats => throw _privateConstructorUsedError;
+  int? get seats => throw _privateConstructorUsedError; // int? personalSeats,
   bool get smoking => throw _privateConstructorUsedError;
   int? get parking => throw _privateConstructorUsedError;
   String? get homePageUrl => throw _privateConstructorUsedError;
@@ -59,7 +58,7 @@ abstract class $StoreCopyWith<$Res> {
       {String? id,
       bool isSuperMarket,
       String name,
-      String? postCode,
+      int? postCode,
       String address,
       String? phoneNumber,
       String genre,
@@ -73,7 +72,6 @@ abstract class $StoreCopyWith<$Res> {
       bool electricMoneyUse,
       List<String>? electricMoneyDetail,
       int? seats,
-      int? personalSeats,
       bool smoking,
       int? parking,
       String? homePageUrl,
@@ -110,7 +108,6 @@ class _$StoreCopyWithImpl<$Res> implements $StoreCopyWith<$Res> {
     Object? electricMoneyUse = freezed,
     Object? electricMoneyDetail = freezed,
     Object? seats = freezed,
-    Object? personalSeats = freezed,
     Object? smoking = freezed,
     Object? parking = freezed,
     Object? homePageUrl = freezed,
@@ -135,7 +132,7 @@ class _$StoreCopyWithImpl<$Res> implements $StoreCopyWith<$Res> {
       postCode: postCode == freezed
           ? _value.postCode
           : postCode // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -188,10 +185,6 @@ class _$StoreCopyWithImpl<$Res> implements $StoreCopyWith<$Res> {
           ? _value.seats
           : seats // ignore: cast_nullable_to_non_nullable
               as int?,
-      personalSeats: personalSeats == freezed
-          ? _value.personalSeats
-          : personalSeats // ignore: cast_nullable_to_non_nullable
-              as int?,
       smoking: smoking == freezed
           ? _value.smoking
           : smoking // ignore: cast_nullable_to_non_nullable
@@ -233,7 +226,7 @@ abstract class _$$_StoreCopyWith<$Res> implements $StoreCopyWith<$Res> {
       {String? id,
       bool isSuperMarket,
       String name,
-      String? postCode,
+      int? postCode,
       String address,
       String? phoneNumber,
       String genre,
@@ -247,7 +240,6 @@ abstract class _$$_StoreCopyWith<$Res> implements $StoreCopyWith<$Res> {
       bool electricMoneyUse,
       List<String>? electricMoneyDetail,
       int? seats,
-      int? personalSeats,
       bool smoking,
       int? parking,
       String? homePageUrl,
@@ -285,7 +277,6 @@ class __$$_StoreCopyWithImpl<$Res> extends _$StoreCopyWithImpl<$Res>
     Object? electricMoneyUse = freezed,
     Object? electricMoneyDetail = freezed,
     Object? seats = freezed,
-    Object? personalSeats = freezed,
     Object? smoking = freezed,
     Object? parking = freezed,
     Object? homePageUrl = freezed,
@@ -310,7 +301,7 @@ class __$$_StoreCopyWithImpl<$Res> extends _$StoreCopyWithImpl<$Res>
       postCode: postCode == freezed
           ? _value.postCode
           : postCode // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       address: address == freezed
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
@@ -362,10 +353,6 @@ class __$$_StoreCopyWithImpl<$Res> extends _$StoreCopyWithImpl<$Res>
       seats: seats == freezed
           ? _value.seats
           : seats // ignore: cast_nullable_to_non_nullable
-              as int?,
-      personalSeats: personalSeats == freezed
-          ? _value.personalSeats
-          : personalSeats // ignore: cast_nullable_to_non_nullable
               as int?,
       smoking: smoking == freezed
           ? _value.smoking
@@ -420,7 +407,6 @@ class _$_Store extends _Store {
       this.electricMoneyUse = false,
       final List<String>? electricMoneyDetail,
       this.seats,
-      this.personalSeats,
       this.smoking = false,
       this.parking,
       this.homePageUrl,
@@ -443,7 +429,7 @@ class _$_Store extends _Store {
   @override
   final String name;
   @override
-  final String? postCode;
+  final int? postCode;
   @override
   final String address;
   @override
@@ -494,8 +480,7 @@ class _$_Store extends _Store {
 
   @override
   final int? seats;
-  @override
-  final int? personalSeats;
+// int? personalSeats,
   @override
   @JsonKey()
   final bool smoking;
@@ -514,7 +499,7 @@ class _$_Store extends _Store {
 
   @override
   String toString() {
-    return 'Store(id: $id, isSuperMarket: $isSuperMarket, name: $name, postCode: $postCode, address: $address, phoneNumber: $phoneNumber, genre: $genre, latitude: $latitude, longitude: $longitude, imagePath: $imagePath, reserve: $reserve, regularHoliday: $regularHoliday, creditCardUse: $creditCardUse, creditCardDetail: $creditCardDetail, electricMoneyUse: $electricMoneyUse, electricMoneyDetail: $electricMoneyDetail, seats: $seats, personalSeats: $personalSeats, smoking: $smoking, parking: $parking, homePageUrl: $homePageUrl, twitterUrl: $twitterUrl, instagramUrl: $instagramUrl, facebookUrl: $facebookUrl, createdAt: $createdAt)';
+    return 'Store(id: $id, isSuperMarket: $isSuperMarket, name: $name, postCode: $postCode, address: $address, phoneNumber: $phoneNumber, genre: $genre, latitude: $latitude, longitude: $longitude, imagePath: $imagePath, reserve: $reserve, regularHoliday: $regularHoliday, creditCardUse: $creditCardUse, creditCardDetail: $creditCardDetail, electricMoneyUse: $electricMoneyUse, electricMoneyDetail: $electricMoneyDetail, seats: $seats, smoking: $smoking, parking: $parking, homePageUrl: $homePageUrl, twitterUrl: $twitterUrl, instagramUrl: $instagramUrl, facebookUrl: $facebookUrl, createdAt: $createdAt)';
   }
 
   @override
@@ -546,8 +531,6 @@ class _$_Store extends _Store {
             const DeepCollectionEquality()
                 .equals(other._electricMoneyDetail, _electricMoneyDetail) &&
             const DeepCollectionEquality().equals(other.seats, seats) &&
-            const DeepCollectionEquality()
-                .equals(other.personalSeats, personalSeats) &&
             const DeepCollectionEquality().equals(other.smoking, smoking) &&
             const DeepCollectionEquality().equals(other.parking, parking) &&
             const DeepCollectionEquality()
@@ -582,7 +565,6 @@ class _$_Store extends _Store {
         const DeepCollectionEquality().hash(electricMoneyUse),
         const DeepCollectionEquality().hash(_electricMoneyDetail),
         const DeepCollectionEquality().hash(seats),
-        const DeepCollectionEquality().hash(personalSeats),
         const DeepCollectionEquality().hash(smoking),
         const DeepCollectionEquality().hash(parking),
         const DeepCollectionEquality().hash(homePageUrl),
@@ -610,7 +592,7 @@ abstract class _Store extends Store {
       {final String? id,
       required final bool isSuperMarket,
       required final String name,
-      required final String? postCode,
+      required final int? postCode,
       required final String address,
       required final String? phoneNumber,
       required final String genre,
@@ -624,7 +606,6 @@ abstract class _Store extends Store {
       final bool electricMoneyUse,
       final List<String>? electricMoneyDetail,
       final int? seats,
-      final int? personalSeats,
       final bool smoking,
       final int? parking,
       final String? homePageUrl,
@@ -643,7 +624,7 @@ abstract class _Store extends Store {
   @override
   String get name;
   @override
-  String? get postCode;
+  int? get postCode;
   @override
   String get address;
   @override
@@ -670,9 +651,7 @@ abstract class _Store extends Store {
   List<String>? get electricMoneyDetail;
   @override
   int? get seats;
-  @override
-  int? get personalSeats;
-  @override
+  @override // int? personalSeats,
   bool get smoking;
   @override
   int? get parking;

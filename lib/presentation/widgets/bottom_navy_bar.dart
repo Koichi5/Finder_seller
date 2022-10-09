@@ -7,30 +7,35 @@ final bottomNavyBarSelectedIndexProvider = StateProvider((ref) => 0);
 class BottomNavyBarExample extends HookConsumerWidget {
   BottomNavyBarExample({Key? key}) : super(key: key);
 
-  Map<String, Icon> contentList = {
-    "Home": const Icon(Icons.home, color: Colors.red,),
-    "商品管理": const Icon(Icons.list_alt, color: Colors.red,),
-    "詳細": const Icon(Icons.settings, color: Colors.red,),
+  Map<String, IconData> contentList = {
+    "Home": Icons.home,
+    "商品管理": Icons.list_alt,
+    "詳細": Icons.settings,
   };
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final bottomNavyBarSelectedIndex = ref.watch(bottomNavyBarSelectedIndexProvider);
-    final bottomNavyBarSelectedIndexNotifier = ref.watch(bottomNavyBarSelectedIndexProvider.notifier);
+    final bottomNavyBarSelectedIndex =
+        ref.watch(bottomNavyBarSelectedIndexProvider);
+    final bottomNavyBarSelectedIndexNotifier =
+        ref.watch(bottomNavyBarSelectedIndexProvider.notifier);
     return BottomNavyBar(
-      items: [
-        for(int i = 0; i < contentList.length; i++)...{
-          BottomNavyBarItem(
-            title: Text(contentList.keys.toList()[i], style: TextStyle(color: Colors.red),),
-            icon: contentList.values.toList()[i],
-            activeColor: Colors.red
-          ),
-        }
-      ],
+        items: [
+          for (int i = 0; i < contentList.length; i++) ...{
+            BottomNavyBarItem(
+                title: Text(
+                  contentList.keys.toList()[i],
+                  style:
+                      TextStyle(color: Theme.of(context).colorScheme.primary),
+                ),
+                icon: Icon(contentList.values.toList()[i],
+                    color: Theme.of(context).colorScheme.primary),
+                activeColor: Theme.of(context).colorScheme.primary),
+          }
+        ],
         selectedIndex: bottomNavyBarSelectedIndex,
-      onItemSelected: (index){
-        bottomNavyBarSelectedIndexNotifier.state = index;
-      }
-    );
+        onItemSelected: (index) {
+          bottomNavyBarSelectedIndexNotifier.state = index;
+        });
   }
 }

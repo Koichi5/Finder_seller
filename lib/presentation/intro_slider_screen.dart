@@ -78,14 +78,14 @@ class IntroSliderExampleSlidePage extends ConsumerWidget {
     return TextButton(
         onPressed: (){
           print("チュートリアル終了");
-          Navigator.pushNamed(context, "/sign_up");
+          Navigator.pushNamed(context, "/sign_in");
         },
-        child: const Text("FINISH"));
+        child: const Text("終了"));
   }
 
   Widget renderPrevBtn() {
     return TextButton(
         onPressed: (){},
-        child: const Text("BACK"));
+        child: const Text("戻る"));
   }
 }

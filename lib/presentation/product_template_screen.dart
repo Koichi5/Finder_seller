@@ -1,4 +1,7 @@
 import 'package:finder_seller/presentation/controller/product_list_controller.dart';
+import 'package:finder_seller/presentation/widgets/product_edit_modal.dart';
+import 'package:finder_seller/presentation/widgets/product_register_form.dart';
+import 'package:finder_seller/presentation/widgets/product_template_card.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -8,23 +11,20 @@ class ProductTemplateScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final productListState = ref.watch(productListControllerProvider);
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("product template screen"),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            const Text("List of all products seller made"),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                productListState.when(
-                  data: (products) => products.isEmpty
-                      ? const Center(
-                    child: Text("Products is empty"),
+    final productNameNotifier = ref.watch(productNameProvider.notifier);
+    final productRegularNotifier = ref.watch(productRegularPriceProvider.notifier);
+    final productDiscountRateNotifier = ref.watch(productDiscountRateProvider.notifier);
+    final productDetailNotifier = ref.watch(productDetailProvider.notifier);
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          productListState.when(
+            data: (products) => products.isEmpty
+                ? const Center(
+                    child: Text("テンプレートはありません"),
                   )
-                      : ListView.builder(
+                : ListView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                     itemCount: products.length,
@@ -34,45 +34,18 @@ class ProductTemplateScreen extends HookConsumerWidget {
                         key: ValueKey(product.id),
                         child: Column(
                           children: [
-                            Text(product.name),
-                            Image.network(product.imagePath.toString()),
-                            Text(product.productDetail.toString()),
-                            Text("${product.regularPrice}円"),
-                            Text("${product.discountRate}"),
-                            ElevatedButton(
-                                onPressed: () {
-                                  ref
-                                      .watch(productListControllerProvider
-                                      .notifier)
-                                      .deleteProduct(
-                                      productId: product.id!);
-                                },
-                                child: Text("Delete")),
-                            ElevatedButton(
-                                onPressed: () {
-                                  ref
-                                      .watch(productListControllerProvider
-                                      .notifier)
-                                      .updateProduct(
-                                      updateProduct: product.copyWith(
-                                          name: "手作り弁当",
-                                          productDetail: "Hi"));
-                                },
-                                child: Text("Edit"))
+                            ProductTemplateCard(product)
                           ],
                         ),
                       );
                     },
                   ),
-                  error: (error, _) => Text("エラー"),
-                  loading: () => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-              ],
+            error: (error, _) => Text("エラー"),
+            loading: () => const Center(
+              child: CircularProgressIndicator(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

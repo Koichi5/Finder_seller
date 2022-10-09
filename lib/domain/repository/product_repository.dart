@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 abstract class BaseProductRepository {
   Future<List<Product>> retrieveProducts({required String userId});
   Future<String> addProduct({required String userId, required Product product});
+  // Future addField({required String userId, required Product product});
   Future<void> updateProduct(
       {required String userId, required Product product});
   Future<void> toggleIsExhibited(
@@ -46,11 +47,21 @@ class ProductRepository implements BaseProductRepository {
           .doc(userId)
           .collection('productList')
           .add(product.toDocument());
+      await _read(firebaseFirestoreProvider)
+          .collection('seller').doc(userId).set({"id" : userId});
       return docRef.id;
     } on FirebaseException catch (e) {
       throw CustomException(message: e.message);
     }
   }
+
+  // Future addField({required String userId, required Product product}) async {
+  //   try {
+  //     final id = await _read(firebaseFirestoreProvider).collection("seller").add({"productId" : userId});
+  //   } on FirebaseException catch (e) {
+  //     throw CustomException(message: e.message);
+  //   }
+  // }
 
   @override
   Future<void> updateProduct(
@@ -68,9 +79,15 @@ class ProductRepository implements BaseProductRepository {
   }
 
   @override
-  Future<void> toggleIsExhibited({required String userId, required Product product}) async {
+  Future<void> toggleIsExhibited(
+      {required String userId, required Product product}) async {
     try {
-      await _read(firebaseFirestoreProvider).collection('seller').doc(userId).collection('productList').doc(product.id).update(product.toDocument());
+      await _read(firebaseFirestoreProvider)
+          .collection('seller')
+          .doc(userId)
+          .collection('productList')
+          .doc(product.id)
+          .update(product.toDocument());
     } on FirebaseException catch (e) {
       throw CustomException(message: e.message);
     }
